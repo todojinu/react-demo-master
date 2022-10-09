@@ -118,3 +118,94 @@
   ```
 
 ###2.4 Animation and Preudo Selector
+
+- styled components의 helper function(keyframes)을 import 하여 animation을 추가할 수 있다.
+
+  > `import styled, {keyframes} from "styled-components";`
+  > 문법은 다음과 같다.
+
+  ```
+  // keyframes`from{css코드}to{css코드}`;
+  ```
+
+  > 예제 1
+
+  ```
+  const rotationAnimation = keyframes`
+  from {
+    transform:rotate(0deg);
+    border-radius: 0px;
+  }
+  to {
+    transform:rotate(360deg);
+    border-radius:100px;
+  }
+  `;
+  const Box = styled.div`
+    height: 200px;
+    width: 200px;
+    background-color: tomato;
+    animation: ${rotationAnimation} 1s linear infinite;
+  `;
+  ```
+
+  > 예제 2
+
+  ```
+  const rotationAnimation = keyframes`
+  0% {
+    transform:rotate(0deg);
+    border-radius: 0px;
+  }
+  50% {
+    border-radius:100px;
+  }
+  100% {
+    transform:rotate(360deg);
+    border-radius: 0px;
+  }
+  `;
+  const Box = styled.div`
+    height: 200px;
+    width: 200px;
+    background-color: tomato;
+    animation: ${rotationAnimation} 1s linear infinite;
+  `;
+  ```
+
+- styled component 안에 있는 일반 태그를 선택하는 방법
+
+  > - 작성한 styled component 안에 접근할 태그를 추가할수 있다.
+  > - 모든 component를 styled component로 처리하지 않고 하나의 component만 styled 처리해주어도 다른 component를 target할 수 있다.
+
+  ```
+  const Box = styled.div`
+    background-color: tomato;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: ${rotationAnimation} 1s linear infinite;
+    span {
+      font-size: 36px;
+    }
+  `;
+
+  <Box>
+    <span>🧑</span>
+  </Box>
+  ```
+
+- styled component 내부의 component에 hover 효과를 적용할 수 있음
+  > - & 는 span을 의미
+  ```
+  const Box = styled.div`
+    span {
+      font-size: 36px;
+      &:hover {
+        font-size: 40px;
+      }
+    }
+  `;
+  ```
+  > - 위 코드에서 '&'(pseudo selector) 는 span을 의미
+  > - `span {&:hover{}}` 는 `span:hover{}` 로도 쓸 수 있다

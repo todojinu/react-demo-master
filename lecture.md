@@ -52,3 +52,36 @@
    ```
 
    > - styled components는 자동으로 class 명을 생성하고 그 class 안에 style을 저장해둔다.
+
+###2.2 Adapting and Extending
+
+- 확장 가능한 styled component 만들기
+
+  > - 컴포넌트에 데이터를 보내는 방식인 prors을 사용한다.
+
+  ```
+  const Box = styled.div`
+    background-color: ${(props) => props.bgColor};
+    width: 100px;
+    height: 100px;
+  `;
+
+  function App() {
+    return (
+      <Father>
+        <Box bgColor="teal" />
+        <Box bgColor="tomato" />
+      </Father>
+    );
+  }
+  ```
+
+  > - 기존 컴포넌트를 확장해 사용할 수 있다.
+  >   styled(기존컴포넌트)`추가적인 css 코드`;
+
+  ```
+  // 기존 Box의 모든 속성들을 들고 온 다음 추가적인 스타일을 넣을 수 있음.
+  const Circle = styled(Box)`
+    border-radius: 50px;
+  `;
+  ```

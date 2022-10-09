@@ -209,3 +209,36 @@
   ```
   > - 위 코드에서 '&'(pseudo selector) 는 span을 의미
   > - `span {&:hover{}}` 는 `span:hover{}` 로도 쓸 수 있다
+
+###2.5 Pseudo Selectors part Two
+
+- styled component 안의 element를 선택하는 다른 방법
+
+  > - target 용도의 styled component를 생성해 부모 styled component 안에 추가한다.
+  >   => styled component 자체를 타겟팅 할 수 있음
+
+  ```
+  const Emoji = styled.span`
+    font-size: 36px;
+  `;
+  const Box = styled.div`
+    height: 200px;
+    width: 200px;
+    ${Emoji} {
+      &:hover {
+        font-size: 98px;
+      }
+    }
+  `;
+
+  function App() {
+    return (
+      <Box>
+        <Emoji>🧑</Emoji>
+        <Emoji as="p">🧑</Emoji>
+      </Box>
+    )
+  }
+  ```
+
+  > 'as' 를 사용한 내부 styled component의 태그를 변경과 상관없이 pseudo selector는 Emoji 를 target 한다.

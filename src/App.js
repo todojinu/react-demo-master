@@ -4,22 +4,29 @@ const Father = styled.div`
   display: flex;
 `;
 
-const Box = styled.div`
-  background-color: ${(props) => props.bgColor};
-  width: 100px;
-  height: 100px;
+const Btn = styled.button`
+  border: 0;
+  border-radius: 15px;
+  background-color: tomato;
+  color: white;
 `;
 
-// 기존 Box의 모든 속성들을 들고 온 다음 추가적인 스타일을 넣을 수 있음.
-const Circle = styled(Box)`
-  border-radius: 50px;
+// styled component에 속성 추가
+const Input = styled.input.attrs({ required: true, minLength: 10 })`
+  background-color: tomato;
 `;
 
 function App() {
   return (
-    <Father>
-      <Box bgColor="teal" />
-      <Circle bgColor="tomato" />
+    <Father as="header">
+      {/* button -> a 태그로 변경 */}
+      <Btn as="a" href="/">
+        Log in
+      </Btn>{" "}
+      <Input />
+      <Input />
+      <Input />
+      <Input />
     </Father>
   );
 }

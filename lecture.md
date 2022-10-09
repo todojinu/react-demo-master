@@ -85,3 +85,36 @@
     border-radius: 50px;
   `;
   ```
+
+###2.3 'As' and Attr
+
+- styled component 의 태그 변경하기
+
+  > - styled component 에 as 라는 props를 전달하여 style은 유지하고 태그만 변경할 수 있다.
+
+  ```
+  const Btn = styled.button`
+    border: 0;
+    border-radius: 15px;
+  `;
+
+  function App() {
+    return (
+      <Father>
+        {/* button -> a 태그로 변경 */}
+        <Btn as="a" href="/">Log in</Btn>
+      </Father>
+    );
+  }
+  ```
+
+- styled component의 html 태그 속성 설정하기
+  > - styled components 가 컴포넌트를 생성할 때 속성값을 설정할 수 있다.
+  >   attrs({속성들}) 를 사용해 추가할 속성을 설정
+  ```
+  const Input = styled.input.attrs({ require: true })`
+    background-color: tomato;
+  `;
+  ```
+
+###2.4 Animation and Preudo Selector

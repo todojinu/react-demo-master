@@ -242,3 +242,54 @@
   ```
 
   > 'as' 를 사용한 내부 styled component의 태그를 변경과 상관없이 pseudo selector는 Emoji 를 target 한다.
+
+###2.7 Themes
+
+- Themes는 기본적으로 모든 색상을 가지고 있는 object 이다.
+- index.js파일에서 ThemesProvider를 styled-components로 부터 import 하고 `<App />` 을 `<ThemeProvider>` 로 감싸준다.
+- ThemeProvider는 theme이라는 prop이 필요하다.
+- theme prop으로 전달할 object에 색상을 지정한다.
+
+```
+import { ThemeProvider } from "styled-components";
+
+const darkTheme = {
+  textColor: "whitesomke",
+  backgroundColor: "#111",
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <ThemeProvider theme={darkTheme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
+);
+```
+
+- 어플리케이션 안에 있는 모든 component들은 theme의 property에 접근할 수 있다.
+
+  > App.js
+
+  ```
+  const Title = styled.h1`
+    color: ${(props) => props.theme.textColor};
+  `;
+  const Wrapper = styled.div`
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.theme.backgroundColor};
+  `;
+
+  function App() {
+    return (
+      <Wrapper>
+        <Title>Hello</Title>
+      </Wrapper>
+    );
+  }
+  ```
